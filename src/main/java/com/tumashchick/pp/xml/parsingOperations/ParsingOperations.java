@@ -12,20 +12,16 @@ public class ParsingOperations {
     private final String DIR_PATH = "D:/IHG/crm-dev-functional-tests/functional-tests/soapui/src/test/resources";
     private ArrayList<File> resultList = null;
     private String patternHeader = "con:soapui-project";
-    public void getProjectList(){
+
+    public ArrayList<File> getProjectList(){
         String header;
 
         try {
             resultList = (ArrayList<File>) fileFinder.findAll(DIR_PATH);
-            System.out.println("1 = " + resultList.size());
+//            System.out.println("1 = " + resultList.size());
             ParserDOM parserDOM = new ParserDOM();
-            // get list of projects
 
-            for (int i = 0; i <resultList.size() ; i++) {
-                header = parserDOM.checkHeader(resultList.get(i));
-                System.out.println(i + " - " + header);
-            }
-            System.out.println("=====================================================");
+            // get list of projects
             for (int i = 0; i < resultList.size(); i++) {
                 header = parserDOM.checkHeader(resultList.get(i));
 
@@ -35,17 +31,11 @@ public class ParsingOperations {
                 }
             }
             resultList.trimToSize();
-            System.out.println("2 = " + resultList.size());
-            // print headers
-            for (int i = 0; i <resultList.size() ; i++) {
-                header = parserDOM.checkHeader(resultList.get(i));
-                System.out.println(i + " - " + header);
-            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return resultList;
     }
 
 
